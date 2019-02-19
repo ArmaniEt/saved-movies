@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import './Watch.css';
+import Button from '../components/Button/Button';
+import Input from '../components/Input/Input';
 
-
-class Watch extends Component {
-
-
-
-
+export default class Watch extends Component {
 
 
     render() {
-        return(
-            <div>
-
+        return (
+            <div className="content">
+                <Input/>
+                <Button/>
             </div>
 
         );
