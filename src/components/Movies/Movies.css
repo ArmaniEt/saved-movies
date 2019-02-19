@@ -1,0 +1,18 @@
+.movies {
+    text-align: center;
+}
+
+.movies__items {
+    list-style: none;
+}
+
+.movies__input {
+    width: 70%;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: 1px solid dodgerblue;
+}
+.movies__input:focus {
+    border:1px solid black;
+    transition: 2.0s;
+}
