@@ -15,22 +15,54 @@ export default class Watch extends Component {
         currentMovie: {name: '', id: null}
     };
 
-    addMovie = () => {
+    addMovie = (event) => {
+        let name = event.target.value;
 
+        let currentMovie = {...this.state.currentMovie, name: name};
+
+        this.setState({
+            ...this.state,
+            currentMovie
+        })
+
+    };
+
+    addOnClick = (event) => {
+        event.preventDefault();
+
+        let date = new Date();
+        let id = date.getTime();
+        let movie = {...this.state.currentMovie};
+        movie.id = id;
+
+        let movies = [...this.state.movies, movie];
+        this.setState({
+            ...this.state,
+            movies,
+            currentMovie: {
+                name: '',
+                id: null
+            }
+        });
     };
 
     render() {
         return (
             <div className="content">
-                <Input/>
-                <Button/>
+                <Input
+                    inputMovie={this.state.currentMovie.name}
+                    onAddMovie={this.addMovie}
+                />
+                <Button
+                    onClickAdd={this.addOnClick}
+                />
                 <p className="content__to-watch">To watch list: </p>
                 {this.state.movies.map((movie) =>
                     <Movies
                         key={movie.id}
                         movie={movie.name}
 
-                /> )}
+                    />)}
             </div>
 
         );
