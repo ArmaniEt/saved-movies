@@ -10,7 +10,7 @@ export default class Movies extends Component{
         return(
             <ul className="movies">
                 <li className="movies__items">
-                    <input className="movies__input" value={this.props.movie} type="text"/>
+                    <input onChange={this.props.movieOnChange} className="movies__input" value={this.props.name} type="text"/>
                 </li>
             </ul>
         )

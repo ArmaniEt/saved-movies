@@ -46,6 +46,17 @@ export default class Watch extends Component {
         });
     };
 
+    updateMovies = (event, id) => {
+        let movieId = this.state.movies.findIndex(movie => movie.id === id);
+
+        let movies = [...this.state.movies];
+        movies[movieId].name = event.target.value;
+
+        this.setState({...this.state, movies})
+
+
+    };
+
     render() {
         return (
             <div className="content">
@@ -60,7 +71,8 @@ export default class Watch extends Component {
                 {this.state.movies.map((movie) =>
                     <Movies
                         key={movie.id}
-                        movie={movie.name}
+                        name={movie.name}
+                        movieOnChange={(event) => this.updateMovies(event, movie.id)}
 
                     />)}
             </div>
