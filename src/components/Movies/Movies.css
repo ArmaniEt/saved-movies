@@ -16,3 +16,13 @@
     border:1px solid black;
     transition: 2.0s;
 }
+
+.far {
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+.far:hover {
+    cursor: pointer;
+    color: red;
+}

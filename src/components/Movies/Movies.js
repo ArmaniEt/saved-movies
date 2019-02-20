@@ -11,6 +11,7 @@ export default class Movies extends Component{
             <ul className="movies">
                 <li className="movies__items">
                     <input onChange={this.props.movieOnChange} className="movies__input" value={this.props.name} type="text"/>
+                    <i onClick={this.props.movieDelete} className="far fa-trash-alt"> </i>
                 </li>
             </ul>
         )

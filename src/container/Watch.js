@@ -54,6 +54,18 @@ export default class Watch extends Component {
 
         this.setState({...this.state, movies})
 
+    };
+
+    isAddOnClickDisabled = () => {
+        return this.state.currentMovie.name === '';
+    };
+
+    deleteMovie = (id) => {
+        let movieId = this.state.movies.findIndex(movie => movie.id === id);
+        let movies = [...this.state.movies];
+        movies.splice(movieId, 1);
+
+        this.setState({...this.state, movies});
 
     };
 
@@ -66,6 +78,7 @@ export default class Watch extends Component {
                 />
                 <Button
                     onClickAdd={this.addOnClick}
+                    addOnClickDisabled={this.isAddOnClickDisabled}
                 />
                 <p className="content__to-watch">To watch list: </p>
                 {this.state.movies.map((movie) =>
@@ -73,7 +86,7 @@ export default class Watch extends Component {
                         key={movie.id}
                         name={movie.name}
                         movieOnChange={(event) => this.updateMovies(event, movie.id)}
-
+                        movieDelete={() => this.deleteMovie(movie.id)}
                     />)}
             </div>
 
