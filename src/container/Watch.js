@@ -15,6 +15,11 @@ export default class Watch extends Component {
         currentMovie: {name: '', id: null}
     };
 
+    componentDidMount() {
+        this.saveToState();
+    };
+
+
     addMovie = (event) => {
         let name = event.target.value;
 
@@ -44,6 +49,7 @@ export default class Watch extends Component {
                 id: null
             }
         });
+        this.saveToLocalStorage({...this.state,movies,currentMovie:{name: '', id: null}});
     };
 
     updateMovies = (event, id) => {
@@ -52,7 +58,8 @@ export default class Watch extends Component {
         let movies = [...this.state.movies];
         movies[movieId].name = event.target.value;
 
-        this.setState({...this.state, movies})
+        this.setState({...this.state, movies});
+        this.saveToLocalStorage({...this.state, movies})
 
     };
 
@@ -66,8 +73,23 @@ export default class Watch extends Component {
         movies.splice(movieId, 1);
 
         this.setState({...this.state, movies});
+        this.saveToLocalStorage({...this.state, movies})
 
     };
+
+    saveToLocalStorage = (state) => {
+        let stateAsString = JSON.stringify(state);
+        localStorage.setItem('pageState', stateAsString);
+
+    };
+
+    saveToState = () => {
+        let stateAsString = localStorage.getItem('pageState');
+        console.log(stateAsString);
+        let state = JSON.parse(stateAsString);
+        this.setState(state);
+    };
+
 
     render() {
         return (

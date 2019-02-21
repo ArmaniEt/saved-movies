@@ -5,6 +5,9 @@ import './Movies.css';
 
 export default class Movies extends Component{
 
+    shouldComponentUpdate(nextProps, nextState){
+        return nextProps.name !== this.props.name;
+    }
 
     render(){
         return(
